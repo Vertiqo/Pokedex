@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	fmt.Sprintf("Hello, World")
+	fmt.Println("Hello, World!")
 }
