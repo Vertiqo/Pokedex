@@ -36,7 +36,7 @@ func startRepl(cfg *config) {
 		}
 		// value.callback(cfg) actually invokes the matched command (e.g. commandHelp).
 		// It returns nil on success, or a non-nil error if something went wrong.
-		if err := value.callback(cfg); err != nil {
+		if err := value.callback(cfg, clean[1:]); err != nil {
 			fmt.Println("Error:", err)
 		}
 

@@ -6,7 +6,7 @@ import (
 
 // commandMapb displays the previous page of locations and updates pagination.
 // If already on the first page, it prints a message instead.
-func commandMapb(cfg *config) error {
+func commandMapb(cfg *config, args []string) error {
 
 	if cfg.mapUrlPrevious == nil {
 		fmt.Println("you're on the first page")

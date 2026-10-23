@@ -19,3 +19,13 @@ type LocResponse struct {
 		URL  string `json:"url"`
 	} `json:"results"`
 }
+
+// LocEncounters represents the JSON response from the PokeAPI's
+// list of encounters in the queried area.
+type LocEncounters struct {
+	Encounters []struct {
+		Pokemon struct {
+			Name string `json:"name"`
+		} `json:"pokemon"`
+	} `json:"pokemon_encounters"`
+}
