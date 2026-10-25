@@ -10,7 +10,7 @@ func commandExplore(cfg *config, args []string) error {
 		return errors.New("entering the name of an area is required")
 	}
 
-	url := baseURL + args[0]
+	url := baseURL + "location-area/" + args[0]
 	encounters, err := cfg.client.FetchEncounters(url)
 	if err != nil {
 		return err

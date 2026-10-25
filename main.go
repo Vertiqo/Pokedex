@@ -8,7 +8,7 @@ import (
 
 // Pokeapi base url:
 
-var baseURL = "https://pokeapi.co/api/v2/location-area/"
+var baseURL = "https://pokeapi.co/api/v2/"
 
 //struct to hold and hand over shared state
 // Next and Previous are pointers rather than plain strings because the
@@ -24,6 +24,7 @@ type config struct {
 	mapUrlPrevious    *string
 	mapUrlNext        *string
 	client            pokeapi.Client
+	caughtPokemon     map[string]pokeapi.Pokemon
 }
 
 type cliCommand struct {
@@ -62,6 +63,11 @@ func getCommands() map[string]cliCommand {
 			description: "Displays Pokemon local to that area",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Attempts to catch the Pokemon",
+			callback:    commandCatch,
+		},
 	}
 }
 
@@ -71,11 +77,13 @@ func main() {
 	// this cfg instance gets passed everywhere
 	// mapUrlNext has to lead somewhere, in this case the first page fits perfectly
 	// a new client
+	startingURL := baseURL + "location-area/"
 
 	cfg := &config{
 		availableCommands: getCommands(),
-		mapUrlNext:        &baseURL,
+		mapUrlNext:        &startingURL,
 		client:            pokeapi.NewClient(5 * time.Second),
+		caughtPokemon:     make(map[string]pokeapi.Pokemon),
 	}
 	startRepl(cfg)
 

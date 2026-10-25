@@ -8,7 +8,7 @@ import (
 
 // Fetcher is helper that helped in refactoring the methods below
 // by taking over the shared requirements to keep the code DRY
-func (c Client) Fetcher(url string) ([]byte, error) {
+func (c Client) fetcher(url string) ([]byte, error) {
 	value, ok := c.cache.Get(url)
 	if ok {
 		// fmt.Println("cache used") debug test to see if cache used or not	fmt.Println("cache used")
@@ -32,7 +32,7 @@ func (c Client) Fetcher(url string) ([]byte, error) {
 // FetchLocations returns locations from the cache when available.
 // Otherwise, it fetches them from the API and caches the response.
 func (c Client) FetchLocations(url string) (LocResponse, error) {
-	data, err := c.Fetcher(url)
+	data, err := c.fetcher(url)
 	if err != nil {
 		return LocResponse{}, err
 	}
@@ -46,7 +46,7 @@ func (c Client) FetchLocations(url string) (LocResponse, error) {
 }
 
 func (c Client) FetchEncounters(url string) (LocEncounters, error) {
-	data, err := c.Fetcher(url)
+	data, err := c.fetcher(url)
 	if err != nil {
 		return LocEncounters{}, err
 	}
