@@ -16,9 +16,10 @@ func commandCatch(cfg *config, args []string) error {
 	if err != nil {
 		return err
 	}
+	// check for http code
 	fmt.Printf("Throwing a Pokeball at %s...\n", args[0])
 	attempt := rand.Intn(pokemon.Exp)
-	// debug test fmt.Printf("chances: %d to %d\n", attempt, pokemon.Exp)
+	fmt.Printf("chances: %d to %d\n", attempt, pokemon.Exp)
 	if attempt < 50 {
 		fmt.Printf("%s was caught!\n", args[0])
 		cfg.caughtPokemon[pokemon.Name] = pokemon
