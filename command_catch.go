@@ -22,6 +22,7 @@ func commandCatch(cfg *config, args []string) error {
 	// debug line - fmt.Printf("chances: %d to %d\n", attempt, pokemon.Exp)
 	if attempt < 50 {
 		fmt.Printf("%s was caught!\n", args[0])
+		fmt.Println("You may now inspect it with the inspect command.")
 		cfg.caughtPokemon[pokemon.Name] = pokemon
 		return nil
 	}
